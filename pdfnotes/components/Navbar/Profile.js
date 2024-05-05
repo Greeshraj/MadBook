@@ -61,10 +61,10 @@ const Profile = ({ navigation }) => {
   return (
     <View style={profileStyles.container}>
       <View style={profileStyles.profileInfo}>
-        <Image
+        {/* <Image
           source={require('../UpperNavbar/tt_sem_06.png')} // Replace with the path to your actual profile picture
           style={profileStyles.profileImage}
-        />
+        /> */}
         <Text style={profileStyles.userName}>{user.first_name} {user.last_name}</Text>
         <Text style={profileStyles.userEmail}>{user.email}</Text>
       </View>

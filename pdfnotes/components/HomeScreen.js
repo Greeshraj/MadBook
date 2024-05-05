@@ -16,21 +16,24 @@ const HomeScreen = ({ navigation }) =>{
     const initializeApp = async () => {
       try {
         const userDetailsFound = await checkUserDetails();
-        console.log("let we see the useDetails in the app file", userDetailsFound);
+        console.log("let we see the user Details in the app file", userDetailsFound);
 
-        if (userDetailsFound.email !== null) {
+        if (userDetailsFound) {
           console.log("my email is not null and is ", userDetailsFound.email);
           setcls('Home');
           setisAuth(true);
           setuser(userDetailsFound)
         } else {
+          console.log("we will got to sign in");
           setcls('SignIn');
           setisAuth(false);
+          navigation.navigate('SignIn');
         }
       } catch (error) {
         console.error('Error initializing app:', error);
         setcls('SignIn');
         setisAuth(false);
+        navigation.navigate('SignIn');
       } finally {
         // Set loading to false when the operation is complete
         setLoading(false);
@@ -60,7 +63,7 @@ const HomeScreen = ({ navigation }) =>{
  return(  
   // <View style={homeStyles.container}>
   <ImageBackground
-      source={require('../assets/bg.jpg')} // Replace with the path to your background image
+      source={require('../assets/bg.jpg')} 
       style={homeStyles.container}
     >
     <Text style={homeStyles.title}>Select Your Year</Text>

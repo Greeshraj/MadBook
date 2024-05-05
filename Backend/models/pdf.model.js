@@ -22,7 +22,7 @@ const pdfSchema = new mongoose.Schema({
         required: true,
     },
     permitted_users: {
-        type: [mongoose.Schema.Types.ObjectId],
+        type: [String],
         default: [],
     },
 });

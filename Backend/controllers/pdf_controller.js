@@ -3,7 +3,7 @@ const fs = require('fs');
 
 exports.createPdf = async (req, res) => {
     try {
-        const { pdf_name, subject_name, description, price,pdf_file_link } = req.body;
+        const { pdf_name, subject_name, description, price,pdf_file_link,permitted_users } = req.body;
      console.log("creating the pdf",req.body);
        
         if (!pdf_file_link) {
@@ -15,7 +15,7 @@ exports.createPdf = async (req, res) => {
             description,
             price,
             pdf_file_link, // Save the PDF file as a Buffer
-            permitted_users: [],
+            permitted_users,
           });
 
         const savedPdf = await pdfDetails.save();

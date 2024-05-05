@@ -14,7 +14,7 @@ const SubjectList = ({ navigation,route }) => {
         const response = await client.get(`subject/getsubjects?year=${selectedYear}`);
 
         const data = await response.data;
-        console.log("let we check the",data);
+        console.log("let we check the subject data",data);
         setSubjects(data);
       } catch (error) {
         console.error('Error fetching subjects:', error);

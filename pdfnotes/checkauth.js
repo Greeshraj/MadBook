@@ -5,13 +5,14 @@ const checkUserDetails = async (navigation) => {
     const userDetailsString = await AsyncStorage.getItem('userDetails');
     console.log("let we check the local",userDetailsString)
     const userDetails = JSON.parse(userDetailsString);
-    if (userDetails.email !== null) {
-      const userDetails = JSON.parse(userDetailsString);
-      console.log('User Details mili:', userDetails.email);
-      return userDetails;
-    } else {
+    if (userDetails == null) {
       console.log('User details not found in the check auth');
       return false; // User details not found
+      
+    } else {
+      // const userDetails = JSON.parse(userDetailsString);
+      console.log('User Details mili:', userDetails.email);
+      return userDetails;
     }
   } catch (error) {
     console.error('Error checking user details:', error);

@@ -28,13 +28,16 @@ const PdfScreen = ({ route, navigation }) => {
 
         console.log("let we see the useDetails in the app file", userDetailsFound);
 
-        if (userDetailsFound.email !== null) {
+        if (userDetailsFound == null) {
+          setcls('SignIn');
+          setisAuth(false);
+        } else {
           console.log("my email is not null and is ", userDetailsFound.email);
           setcls('Home');
           setisAuth(true);
           setuser(userDetailsFound)
           try {
-            // console.log("let's try to fetch the PDF ", pdfTitle,token);
+            console.log("let's try to fetch the PDF ", pdfTitle,token);
             const response = await client.post(`pdf/getpdf`, { pdf_name: pdfTitle, userDetailsFound }, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -46,15 +49,10 @@ const PdfScreen = ({ route, navigation }) => {
             const userEmail = userDetailsFound.email;
         if (permittedUsers.includes(userEmail)) {
           setpurchase(true);
-        } 
-             
+        }   
         } catch (error) {
             console.error('Error fetching PDF:', error);
         }
-       
-        } else {
-          setcls('SignIn');
-          setisAuth(false);
         }
       } catch (error) {
         console.error('Error initializing app:', error);

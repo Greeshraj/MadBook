@@ -15,6 +15,7 @@ const CreatePdf = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [pdf_file_link, setPdfFile] = useState("");
+  const[permitted_user,setpermitted_user]=useState("");
 
  
 
@@ -62,7 +63,7 @@ const CreatePdf = () => {
     e.preventDefault();
   
     // Validate form fields
-    if (!pdfName || !description || !price || !selectedYear || !selectedSubject || !selectedTopic || !pdf_file_link) {
+    if (!pdfName || !description || !price || !selectedYear || !selectedSubject || !selectedTopic || !pdf_file_link || !permitted_user) {
       alert("All fields are required");
       return;
     }
@@ -76,6 +77,7 @@ const CreatePdf = () => {
     formData.append('subject_name', selectedSubject);
     formData.append('description', description);
     formData.append('price', price);
+    formData.append('permitted_users',permitted_user);
   
     try {
       // Make the API request using FormData for file upload
@@ -95,6 +97,7 @@ const CreatePdf = () => {
       setSelectedYear("");
       setSelectedSubject("");
       setSelectedTopic("");
+      setpermitted_user("");
     } catch (error) {
       console.error("Error creating PDF:", error);
   
@@ -248,6 +251,14 @@ const CreatePdf = () => {
           type="text"
           value={pdf_file_link}
           onChange={(e) => setPdfFile(e.target.value)}
+        />
+      </label>
+      <label>
+        Permitted User:
+        <input
+          type="text"
+          value={permitted_user}
+          onChange={(e) => setpermitted_user(e.target.value)}
         />
       </label>
 
